@@ -1,27 +1,29 @@
 // @flow
-import React, { Component } from 'react';
+import React from 'react';
+import { ApolloProvider } from 'react-apollo';
 
-import logo from './logo.svg';
-import './App.css';
-
-class App extends Component<void, {}, {}> {
-  state = {};
-  handleClick(e: MouseEvent) {
-    console.log(e.clientY);
-  }
-  render() {
-    return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2 onClick={e => this.handleClick(e)}>Welcome </h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    );
-  }
-}
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+// import { BrowserRouter as Router } from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
+import client from './apollo';
+import createStore from './store';
+import LanguageProvider from './containers/LanguageProvider';
+import { translationMessage } from './i18n';
+import Routes from './routes';
+import theme from './muiTheme';
+const history = createHistory();
+const store = createStore({}, history);
+const App = () => (
+  <ApolloProvider client={client} store={store}>
+    <MuiThemeProvider muiTheme={theme}>
+      <LanguageProvider messages={translationMessage}>
+        <ConnectedRouter history={history}>
+          <Routes />
+        </ConnectedRouter>
+      </LanguageProvider>
+    </MuiThemeProvider>
+  </ApolloProvider>
+);
 
 export default App;

@@ -1,5 +1,7 @@
 [ignore]
-
+.*/node_modules/draft-js/lib.*
+.*/node_modules/styled-components.*
+.*/node_modules/hedron.*
 [include]
 
 [libs]

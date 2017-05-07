@@ -1,0 +1,18 @@
+{
+  "header.login": "登录",
+  "header.register": "注册",
+  "header.title": "扉历",
+  "header.language": "EN",
+  "sider.menu.index": "发现",
+  "sider.menu.template": "模版",
+  "sider.menu.data": "分析",
+  "model.title.register": "注册",
+  "model.title.login": "登录",
+  "auth.rememberMe": "记住我",
+  "auth.forgotPassword": "忘记密码",
+  "auth.button.register": "注册",
+  "auth.button.login": "登录",
+  "auth.option.or": "或者",
+  "auth.option.login": "现在登录",
+  "auth.option.register": "现在注册"
+}

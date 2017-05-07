@@ -5,7 +5,10 @@ var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+
 var paths = require('./paths');
+var theme = require('../src/theme');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -107,6 +110,7 @@ module.exports = {
           // get properly excluded by /\.(js|jsx)$/ because of the query string.
           // Webpack 2 fixes this, but for now we include this hack.
           // https://github.com/facebookincubator/create-react-app/issues/1713
+          /\.less$/,
           /\.(js|jsx)(\?.*)?$/,
           /\.css$/,
           /\.json$/,
@@ -124,7 +128,10 @@ module.exports = {
         include: paths.appSrc,
         loader: 'babel',
         query: {
-          plugins: ['react-hot-loader/babel'],
+          plugins: [
+            'react-hot-loader/babel',
+            ['import', { libraryName: 'antd', style: true }],
+          ],
           // This is a feature of `babel-loader` for webpack (not Babel itself).
           // It enables caching results in ./node_modules/.cache/babel-loader/
           // directory for faster rebuilds.
@@ -139,6 +146,10 @@ module.exports = {
       {
         test: /\.css$/,
         loader: 'style!css?importLoaders=1!postcss',
+      },
+      {
+        test: /\.less$/,
+        loader: `style!css?importLoaders=1!postcss!less?{modifyVars: ${JSON.stringify(theme)}}`,
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
@@ -197,6 +208,12 @@ module.exports = {
     // makes the discovery automatic so you don't have to restart.
     // See https://github.com/facebookincubator/create-react-app/issues/186
     new WatchMissingNodeModulesPlugin(paths.appNodeModules),
+    new CopyWebpackPlugin([
+      {
+        from: 'node_modules/monaco-editor/min/vs',
+        to: 'vs',
+      },
+    ]),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.

@@ -1,0 +1,10 @@
+dependencies:
+  react-monaco-editor@^0.8.1: 0.8.1
+packages:
+  /monaco-editor/0.8.3: 523bdf2d1524db2c2dfc3cae0a7b6edc48d6dea6
+  /react-monaco-editor/0.8.1:
+    dependencies:
+      monaco-editor: 0.8.3
+    resolution: 3f09a3a26919c22b783d275d0ec674f6ce5b7f81
+registry: 'https://registry.npmjs.org/'
+version: 2

@@ -1,0 +1,42 @@
+.logo {
+  display: flex;
+  line-height: 40px;
+  perspective: 800px;
+  height: 63px;
+  width: 100%;
+  padding: 10px 10px 0 10px;
+  justify-content: center;
+}
+
+@keyframes logochange {
+  0% {
+    /*transform: rotate3d(-20,-40,0,0deg);*/
+    background-position: 100% 50%;
+  }
+  50% {
+    /*transform: rotate3d(20,40,0,360deg);*/
+    background-position: 0 50%;
+  }
+  100% {
+    /*transform: rotate3d(-20,-40,0,0deg);*/
+    background-position: 100% 50%;
+  }
+}
+
+.logo > div {
+  line-height: 25px;
+  height: 40px;
+  width: 33px;
+  color: white;
+  transform-style: preserve-3d;
+  transition: transform 1s ease;
+  background-image:linear-gradient(270deg,#cc6aa5,#3e91cc,#2dcca7);
+  transform: rotate3d(-20,-40,10,30deg);
+  background-size: 600% 100%;
+  animation: logochange 8s ease infinite normal both;
+}
+.logo > div::before {
+  content: 'Me';
+  position: relative;
+  left: 10px;
+}

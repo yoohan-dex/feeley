@@ -1,0 +1,18 @@
+{
+  "header.login": "Login",
+  "header.register": "Register",
+  "header.title": "Feeley",
+  "header.language": "中文",
+  "sider.menu.index": "Discover",
+  "sider.menu.template": "Template",
+  "sider.menu.data": "Trade",
+  "model.title.register": "Register",
+  "model.title.login": "Login",
+  "auth.rememberMe": "Remember me",
+  "auth.forgotPassword": "forgot password",
+  "auth.button.register": "Register",
+  "auth.button.login": "Login",
+  "auth.option.or": "Or",
+  "auth.option.login": "login now",
+  "auth.option.register": "register now"
+}
